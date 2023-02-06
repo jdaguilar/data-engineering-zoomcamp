@@ -1,6 +1,6 @@
 ## Week 2 Homework
 
-The goal of this homework is to familiarise users with workflow orchestration and observation. 
+The goal of this homework is to familiarize users with workflow orchestration and observation. 
 
 
 ## Question 1. Load January 2020 data
@@ -50,7 +50,7 @@ Make sure you have the parquet data files for Yellow taxi data for Feb. 2019 and
 
 ## Question 4. Github Storage Block
 
-Using the `web_to_gcs` script from the videos as a guide, you want to store your flow code in a GitHub repository for collaboration with your team. Prefect can look in the GitHub repo to find your flow code and read it. Create a GitHub storage block from the UI or in Python code and use that in your Deployment instead of storing your flow code locally or baking your flow code into a Docker image. 
+Using the `web_to_gcs` script from the videos as a guide, you want to store your flow code in a GitHub repository for collaboration with your team. Prefect can look in the GitHub repo to find your flow code and read it. Create a GitHub storage block from the UI or in Python code and use that in your Deployment instead of storing your flow code locally or baking your flow code into a Docker image.
 
 Note that you will have to push your code to GitHub, Prefect will not push it for you.
 

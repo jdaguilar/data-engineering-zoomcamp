@@ -1,0 +1,72 @@
+# -----------------------------------------------------#
+# Credits: https://github.com/fraibacas/prefect-orion  #
+# -----------------------------------------------------#
+
+networks:
+  prefect:
+    name: prefect
+
+services:
+  # --------------------------------------#
+  #               Postgres                #
+  # --------------------------------------#
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ny_taxi
+    ports:
+    - 5432:5432
+    volumes:
+      - ./volumes/postgres:/var/lib/postgresql/data
+    networks:
+      - prefect
+  # --------------------------------------#
+  #               PG Admin                #
+  # --------------------------------------#
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - 8080:80
+    networks:
+      - prefect
+
+  # --------------------------------------#
+  #             Prefect Server            #
+  # --------------------------------------#
+  prefect-server:
+    image: prefect-orion-server
+    command:
+      - prefect
+      - orion
+      - start
+    ports:
+      - 4200:4200
+    volumes:
+      - ${PWD}/volumes/prefect:/root/.prefect
+      - ${PWD}/flows:/flows
+    environment:
+      PREFECT_ORION_API_HOST: 0.0.0.0
+      PREFECT_API_URL: http://prefect-server:4200/api
+    networks:
+      - prefect
+  # --------------------------------------#
+  #             Docker Agent              #
+  # --------------------------------------#
+  prefect-agent:
+    image: prefecthq/prefect:2.7.10-python3.9
+    command: " prefect agent start -q 'default'"
+    depends_on:
+      prefect-server:
+        condition: service_started
+    environment:
+      PREFECT_API_URL: http://prefect-server:4200/api
+      DOCKER_HOST: unix://var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - prefect
