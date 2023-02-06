@@ -1,6 +1,7 @@
 pandas
 prefect
 prefect-gcp[cloud_storage]
+prefect-github
 python-dotenv
 pyarrow
 pandas-gbq
