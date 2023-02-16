@@ -1,0 +1,80 @@
+###
+### A complete description of a Prefect Deployment for flow 'etl-parent-flow'
+###
+name: Parametrized_url
+description: null
+version: cdd17111fc24056a496f3b8f450234aa
+# The work queue that will handle this deployment's runs
+work_queue_name: default-agent-pool
+work_pool_name: default-agent-pool
+tags: []
+parameters: {}
+schedule: null
+is_schedule_active: true
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-parent-flow
+manifest_path: null
+infrastructure:
+  type: docker-container
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  image: prefecthq/prefect:2.7.10-python3.9
+  image_pull_policy: ALWAYS
+  image_registry: null
+  networks: []
+  network_mode: null
+  auto_remove: true
+  volumes: []
+  stream_output: true
+  memswap_limit: null
+  mem_limit: null
+  privileged: false
+  _block_document_id: 95ff1372-0a71-4373-bf1a-7db24ef8574e
+  _block_document_name: prefect-executor
+  _is_anonymous: false
+  block_type_slug: docker-container
+  _block_type_slug: docker-container
+storage:
+  repository: https://github.com/jdaguilar/data-engineering-zoomcamp
+  reference: self-branch
+  access_token: null
+  include_git_objects: false
+  _block_document_id: 91960a09-7d58-492c-8964-2baba0298cde
+  _block_document_name: github-block
+  _is_anonymous: false
+  block_type_slug: github
+  _block_type_slug: github
+path: ''
+entrypoint: flows/deployments/parametrized_url.py:etl_parent_flow
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    months:
+      title: months
+      default:
+      - 1
+      - 2
+      position: 0
+      type: array
+      items:
+        type: integer
+    year:
+      title: year
+      default: 2021
+      position: 1
+      type: integer
+    color:
+      title: color
+      default: yellow
+      position: 2
+      type: string
+  required: null
+  definitions: null
+timestamp: '2023-02-06T12:08:59.492068+00:00'
