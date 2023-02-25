@@ -2,6 +2,11 @@
 
 In this homework, we'll use the models developed during the week 4 videos and enhance the already presented dbt project using the already loaded Taxi data for fhv vehicles for year 2019 in our DWH.
 
+This means that in this homework we use the following data [Datasets list](https://github.com/DataTalksClub/nyc-tlc-data/)
+* Yellow taxi data - Years 2019 and 2020
+* Green taxi data - Years 2019 and 2020 
+* fhv data - Year 2019. 
+
 We will use the data loaded for:
 
 * Building a source table: `stg_fhv_tripdata`
@@ -23,7 +28,7 @@ You should find the views and models for querying in your DWH.
 
 - 41648442
 - 51648442
-- 61635329
+- 61648442
 - 71648442
 
 
@@ -48,7 +53,7 @@ Create a staging model for the fhv data for 2019 and do not add a deduplication 
 Filter records with pickup time in year 2019.
 
 - 33244696
-- 42084899
+- 43244696
 - 53244696
 - 63244696
 
@@ -62,7 +67,7 @@ Similar to what we've done in fact_trips, keep only records with known pickup an
 Run it via the CLI without limits (is_test_run: false) and filter records with pickup time in year 2019.
 
 - 12998722
-- 22676253
+- 22998722
 - 32998722
 - 42998722
 
